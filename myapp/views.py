@@ -16,7 +16,6 @@ from django.contrib import messages
 import os
 from .forms import *
 from .models import *
-from django_otp.oath import totp
 import time
 import base64
 from django.utils import timezone
