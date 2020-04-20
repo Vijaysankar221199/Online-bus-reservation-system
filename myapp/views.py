@@ -52,8 +52,7 @@ def book(request):
 			username = request.user.username
 			store_nowl = seats.objects.create(slot_name= slot_req_name,visiname=username,status='occupied')
 			store_all = allbookings.objects.create(slot_name= slot_req_name,visiname=username,status='occupied')
-			return HttpResponse("Booked", content_type='text/plain')
-
+			return HttpResponse("Booked", content_type='text/plain')    
 	else:
 		return render(request,'book.html',)
 
@@ -63,6 +62,7 @@ def mybookings(request):
         return HttpResponse("NOT VALID", content_type='text/plain')
     else:
         if request.method == 'GET':
+            #print("hai")
             username = request.user.username
             Image2 = seats.objects.filter(visiname= username)
             stu = {"details": Image2 }
