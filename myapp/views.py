@@ -43,18 +43,20 @@ def dashboard(request):
 
 @login_required
 def book(request):
-	if request.method == 'POST':
-		slot_req_name = request.POST.get("seatname")
-		str(slot_req_name)
-		if slot_req_name is None:
-			return HttpResponse("Select atleast one seat", content_type='text/plain')
-		else:
-			username = request.user.username
-			store_nowl = seats.objects.create(slot_name= slot_req_name,visiname=username,status='occupied')
-			store_all = allbookings.objects.create(slot_name= slot_req_name,visiname=username,status='occupied')
-			return HttpResponse("Booked", content_type='text/plain')    
-	else:
-		return render(request,'book.html',)
+    if request.method == 'POST':
+        slot_req_name = request.POST.get("seatname")
+        str(slot_req_name)
+        if slot_req_name is None:
+            return HttpResponse("Select atleast one seat", content_type='text/plain')
+        else:
+            username = request.user.username
+            store_nowl = seats.objects.create(slot_name= slot_req_name,visiname=username,status='occupied')
+            store_all = allbookings.objects.create(slot_name= slot_req_name,visiname=username,status='occupied')
+            return HttpResponse("Booked", content_type='text/plain')
+    else:
+        status = seats.objects.filter(status='occupied')
+        stu = {"details": status}
+        return render(request,'book.html',stu)
 
 @login_required
 def mybookings(request):

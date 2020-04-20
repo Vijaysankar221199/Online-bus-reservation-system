@@ -13,6 +13,8 @@
               $('input:checkbox').not(this).prop('checked', false);
           });
       });
+
+
       </script>
     <style>
     *, *:before, *:after {
@@ -172,9 +174,18 @@ ol {
 
     </style>
 </head>
+<!-- <body onload="chec()"> -->
 <body>
+  <center> <h3> Occupied Seats </h3>
+  {% for student in details %}
 
-<form action="{%  url 'book'%}" method='POST'>
+  <p id ='me'>  {{ student.slot_name}}  </p>
+
+  {% endfor %}
+  </center>
+
+
+<form action="{%  url 'book'%}" method='POST' >
   {% csrf_token %}
     <div class="plane">
       <div class="cockpit">
@@ -197,7 +208,7 @@ ol {
               </li>
               <li class="seat">
                 <input type="checkbox" id="1D"  name="seatname" value="1D"   / >
-                <label for="1C">1D</label>
+                <label for="1D">1D</label>
               </li>
 
             </ol>
@@ -389,6 +400,15 @@ ol {
       <center><input type="submit" value="Submit"></button></center>
 
 </form>
+
+<!-- <script>
+function chec(){
+var a = document.getElementById('mee')
+a = string(a)
+//a.slice(13,17)
+console.log(a)
+}
+</script> -->
 
       <br>
 </body>
