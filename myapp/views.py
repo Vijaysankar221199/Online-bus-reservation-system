@@ -48,6 +48,8 @@ def book(request):
         str(slot_req_name)
         if slot_req_name is None:
             return HttpResponse("Select atleast one seat", content_type='text/plain')
+        elif seats.objects.filter(slot_name= slot_req_name):
+            return HttpResponse("already booked by another person. try another one", content_type='text/plain')
         else:
             username = request.user.username
             store_nowl = seats.objects.create(slot_name= slot_req_name,visiname=username,status='occupied')

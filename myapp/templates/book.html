@@ -12,6 +12,12 @@
           $('input:checkbox').click(function() {
               $('input:checkbox').not(this).prop('checked', false);
           });
+
+          $('input:checkbox').click(function() {
+              $('input:checkbox').(this).prop('disabled', true);
+          });
+
+
       });
 
 
@@ -72,6 +78,10 @@ ol {
 }
 .seat input[type=checkbox]:disabled + label {
   background: #dddddd;
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
   text-indent: -9999px;
   overflow: hidden;
 }
